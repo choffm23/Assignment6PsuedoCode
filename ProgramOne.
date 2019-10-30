@@ -1,0 +1,42 @@
+CLASS Location
+BEGIN
+    Xposition <- 0
+    Yposition <- 0
+     CONSTRUCTOR Location(NewX, NewY)
+         Xposition<-NewX
+         Yposition<-NewY
+     END CONSTRUCTOR
+END CLASS
+METHOD UserInput
+BEGIN
+    char<-READ
+    WHILE(bool==FALSE)
+     IF (char==U || char==L)
+        change=-1
+        bool=TRUE
+     ELSE IF(char==D || char==R)
+        change=1
+        bool=TRUE
+     ELSE PRINTLINE "Incorrect Input, please try again."
+    ENDWHILE
+END METHOD
+METHOD NewLocation
+    IF (char==L || char==R)
+       NewX=(Xposition+change)
+    IF (char==U || char==D)
+       NewY=(Yposition+change)
+    IF (NewX<0)
+       NewX=9
+    IF (NewX>9)
+       NewX=0
+    IF (NewY<0)
+       NewY=9
+    IF (NewY>9)
+       NewY=0
+END METHOD
+MAIN
+BEGIN
+CREATE change=0, char=C, bool=FALSE
+
+
+    
