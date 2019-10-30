@@ -17,7 +17,8 @@ BEGIN
      ELSE IF(char==D || char==R)
         change=1
         bool=TRUE
-     ELSE PRINTLINE "Incorrect Input, please try again."
+     ELSE IF(char!=Q)
+        PRINTLINE "Incorrect Input, please try again."
     ENDWHILE
 END METHOD
 METHOD NewLocation
@@ -36,7 +37,12 @@ METHOD NewLocation
 END METHOD
 MAIN
 BEGIN
-CREATE change=0, char=C, bool=FALSE
-
-
-    
+   CREATE change=0, char=C, bool=FALSE, NewX=5, NewY=5
+   L1.Location(NewX,NewY)
+   WHILE(char!=Q)
+      PRINTLINE "Current Location - X: " + Xposition + " Y: " +Yposition
+      PRINTLINE "(U)p, (D)own, (L)eft, (R)ight, (Q)uit"
+      UserInput
+      NewLocation
+   ENDWHILE
+END MAIN
