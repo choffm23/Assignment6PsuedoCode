@@ -1,0 +1,35 @@
+CLASS RGB
+BEGIN
+   RED=0
+   Green=0
+   Blue=0
+     CONSTRUCTOR(R, G, B)
+        Red<-R
+        Green<-G
+        Blue<-B
+     ENDCONSTRUCTOR
+ENDCLASS
+METHOD IncRed()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(R+X>255)
+         PRINTLINE "That's too much! You can only increase by up to" + 255-R + ", please try again."
+      ELSE
+         R=R+X
+         L=1
+   ENDWHILE
+ENDMETHOD
+METHOD DecRed()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(R-X<0)
+         PRINTLINE "That's too much! You can only decrease by atmost" + R + ", please try again."
+      ELSE
+         R=R-X
+         L=1
+   ENDWHILE
+ENDMETHOD
