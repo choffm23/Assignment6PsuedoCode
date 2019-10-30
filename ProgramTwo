@@ -33,3 +33,83 @@ METHOD DecRed()
          L=1
    ENDWHILE
 ENDMETHOD
+METHOD IncGreen()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(G+X>255)
+         PRINTLINE "That's too much! You can only increase by up to" + 255-G+ ", please try again."
+      ELSE
+         G=G+X
+         L=1
+   ENDWHILE
+ENDMETHOD
+METHOD DecGreen()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(G-X<0)
+         PRINTLINE "That's too much! You can only decrease by at-most" + G + ", please try again."
+      ELSE
+         G=G-X
+         L=1
+   ENDWHILE
+ENDMETHOD
+METHOD IncBlue()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(B+X>255)
+         PRINTLINE "That's too much! You can only increase by up to" + 255-B + ", please try again."
+      ELSE
+         B=B+X
+         L=1
+   ENDWHILE
+ENDMETHOD
+METHOD DecBlue()
+   PRINTLINE "By how much? "
+   X<-READ
+   WHILE(L==0)
+      L=0
+      IF(B-X<0)
+         PRINTLINE "That's too much! You can only decrease by at-most" + B + ", please try again."
+      ELSE
+         B=B-X
+         L=1
+   ENDWHILE
+ENDMETHOD
+METHOD ToString()
+    CREATE a, b, c, D=(0.2126*R+0.7152*G+0.0722*B)
+    a<-toString(R)
+    b<-toString(G)
+    c<-toString(B)
+    d<-toString(D)
+    RETURN "R: " + a + "G: " + b + "B: " + c + "L: " + d
+ENDMETHOD
+MAIN 
+BEGIN 
+   CREATE X=0, L=0, R=254, G=2, B=100, I=0
+   WHILE(I!=8)
+      C1.RGB(R, G, B)
+      PRINTLINE toString()
+      PRINTLINE"(1)Increase Red, (2)Decrease Red"
+      PRINTLINE"(3)Increase Green, (4)Decrease Green"
+      PRINTLINE"(5)Increase Blue, (6)Decrease Blue"
+      PRINTLINE"(7)Print the Inverse"
+      PRINTLINE"(8)Quit"
+      SWITCH (I)
+         CASE 1: IncRed() BREAK
+         CASE 2: DecRed() BREAK
+         CASE 3: IncGreen() BREAK
+         CASE 4: DecGreen() BREAK
+         CASE 5: IncBlue() BREAK
+         CASE 6: DecBlue() BREAK
+         CASE 7: R=255-R G=255-G B=255-B BREAK
+         CASE 8: PRINTLINE "Quitting..." BREAK
+         DEFAULT: I + " is not an option, please try again." BREAK
+       END SWITCH
+   ENDWHILE
+ENDMAIN
